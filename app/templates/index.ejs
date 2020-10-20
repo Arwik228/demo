@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
+    <title>Demo swagger and Sql interface</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+    <div id="root">
+        <div id="list_bar">
+            <input type="text" name="" placeholder="Найти раздел" id="find">
+            <%array.forEach(element => {%>
+            <div data-id="<%=element[0]%>" data-path="<%=element[2]%>" class="elem"
+                style="background-color:rgba(142 ,0 ,255 ,<%=(1/(element[2].split('/').length)).toFixed(2) %>);
+                margin-left: calc(30px * <%=element[2].split('/').length - 1 %>)"><%=element[1]%></div>
+            <%});%>
+        </div>
+        <div id="control_bar">
+            <div id="control_bar_title">Пока ничего не выбрано</div>
+            <div id="control_bar_button">
+                <input type="text" name="" id="createORchange" class="button" style="font-size:24px;color:white;padding: 5px 0;">
+                <div class="button" id="create" style="background-color: lime">Добавить дочерний</div>
+                <div class="button" id="change" style="background-color: #ffeb3b">Изменить выбранный</div>
+                <div class="button" id="remove" style="background-color: red">Удалить выбранный</div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
