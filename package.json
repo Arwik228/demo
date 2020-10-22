@@ -8,10 +8,12 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ejs": "^3.1.5",
     "express": "^4.12.3",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "sass": "^1.27.0",
+    "sequelize": "^6.3.5",
     "swagger-express-mw": "^0.1.0"
   },
   "devDependencies": {

@@ -1,9 +1,0 @@
-create database demo;
-use demo;
-create table List (
-    UnitID int NOT NULL AUTO_INCREMENT,
-    Text varchar(255) NOT NULL,
-    Data varchar(255) NOT NULL,
-    Path varchar(255) NOT NULL,
-    PRIMARY KEY (UnitID)
-);
