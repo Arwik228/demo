@@ -1,16 +1,19 @@
-##Nodejs
-FROM node:10
-RUN useradd --user-group --create-home --shell /bin/false app
-ENV HOME=/home/app
+FROM node:12
 
-COPY package.json package-lock.json $HOME/playerground/
-RUN chown -R app:app $HOME/*
+# создание директории приложения
+WORKDIR /usr/src/app
 
-USER app 
-WORKDIR $HOME/playerground
-RUN npm cache clean && npm install --silent --progress=false
+# установка зависимостей
+# символ астериск ("*") используется для того чтобы по возможности 
+# скопировать оба файла: package.json и package-lock.json
+COPY package*.json ./
 
-USER root
-COPY . $HOME/playerground
-RUN chown -R app:app $HOME/*
-USER app
+RUN npm install
+# Если вы создаете сборку для продакшн
+# RUN npm ci --only=production
+
+# копируем исходный код
+COPY . .
+
+EXPOSE 10010
+CMD [ "node", "index.js" ]
