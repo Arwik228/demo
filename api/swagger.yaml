@@ -1,0 +1,131 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Units controller backend"
+host: "127.0.0.1:10010"
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /api/elements:
+    get:
+      description: "Get all parameters"
+      operationId: "apiElementsGET"
+      parameters: []
+      responses:
+        "200":
+          description: "A User object"
+          schema:
+            type: "object"
+        default:
+          description: "Error"
+      x-swagger-router-controller: "Default"
+  /:
+    get:
+      description: "Base url"
+      operationId: "index"
+      parameters: []
+      responses:
+        "200":
+          description: "A User object"
+          schema:
+            type: "object"
+        default:
+          description: "Error"
+      x-swagger-router-controller: "Default"
+  /api/element/{content}:
+    post:
+      description: "Creating new unit"
+      operationId: "apiElementContentPOST"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "content"
+        in: "path"
+        description: "Change item content"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Main module for the new element"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateRequest"
+      responses:
+        "200":
+          description: "Return object data"
+        "404":
+          description: "Element not found"
+      x-swagger-router-controller: "Default"
+    put:
+      description: "Change this unit"
+      operationId: "apiElementContentPUT"
+      parameters:
+      - name: "content"
+        in: "path"
+        description: "Change item content"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Main module for the new element"
+        required: true
+        schema:
+          $ref: "#/definitions/ChangeRequest"
+      responses:
+        "200":
+          description: "Return object data"
+        "404":
+          description: "Element not found"
+      x-swagger-router-controller: "Default"
+  /api/element/delete:
+    delete:
+      description: "Remove this unit"
+      operationId: "apiElementDeleteIdsDELETE"
+      parameters:
+      - name: "body"
+        in: "body"
+        description: "Determines the serial number of the unit"
+        required: true
+        schema:
+          $ref: "#/definitions/RemoveRequest"
+      responses:
+        "200":
+          description: "Return object data"
+        "404":
+          description: "Element not found"
+      x-swagger-router-controller: "Default"
+definitions:
+  CreateRequest:
+    type: "object"
+    properties:
+      path:
+        type: "string"
+        description: "path"
+    example:
+      path: "path"
+  ChangeRequest:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "id"
+    example:
+      id: "0"
+  RemoveRequest:
+    type: "object"
+    properties:
+      ids:
+        type: "string"
+        description: "ids"
+    example:
+      ids: "0,1,2"
+responses:
+  ElementNotFound:
+    description: "Element not found"
+  DefaultResponse:
+    description: "Return object data"
