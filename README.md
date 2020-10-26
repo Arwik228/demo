@@ -14,7 +14,7 @@ To run the server, please execute the following from the root directory:
 npm install
 ```
 
-and open  `api/controllers/unit_controller.js` set connection your sql server:
+and open  `/service/DefaultService.js` set connection your sql server:
 
 ```
 new Sequelize('db', 'user', 'password', {host: 'localhost', dialect: 'mysql'});
